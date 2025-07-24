@@ -9,8 +9,8 @@ def main():
     project      = "mythic-aloe-457912-d5"
     dataset      = "forecast"
     table        = "weather_data"
-    temp_bucket  = "bq-temp-gds"
-    bucket       = "weather-data-gds"
+    temp_bucket  = "bq-temp-gcp"
+    bucket       = "weather-data-gcp"
     today        = datetime.date.today().strftime("%Y-%m-%d")
     input_path   = f"gs://{bucket}/weather/{today}/forecast.csv"
 
