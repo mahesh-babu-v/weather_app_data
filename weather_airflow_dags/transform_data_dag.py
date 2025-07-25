@@ -36,7 +36,6 @@ with DAG(
         },
         "environment_config": {
             "execution_config": {
-                "max_executors": 2 ,
                 "service_account": "1083548207078-compute@developer.gserviceaccount.com",
                 "network_uri": "projects/airy-advantage-462109-h1/global/networks/default",
                 "subnetwork_uri": "projects/airy-advantage-462109-h1/regions/us-central1/subnetworks/default",
