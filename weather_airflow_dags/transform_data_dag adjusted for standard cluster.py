@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta
 import uuid
 from airflow import DAG
-from airflow.providers.google.cloud.operators.dataproc import DataprocCreateBatchOperator
+# from airflow.providers.google.cloud.operators.dataproc import DataprocCreateBatchOperator
+from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
 
 # DAG default arguments
 default_args = {
@@ -58,29 +59,29 @@ with DAG(
     # pyspark_task
 
 
-    from airflow.providers.google.cloud.operators.dataproc import DataprocSubmitJobOperator
+    
 
-# Job configuration for cluster-based execution
-job_details = {
-    "reference": {"project_id": "airy-advantage-462109-h1"},
-    "placement": {"cluster_name": "cluster-demo"},
-    "pyspark_job": {
-        "main_python_file_uri": "gs://weather-data-gcp/script/weather_data_processing.py",
-        "args": [],
-        "python_file_uris": [],  # Additional .py files if any
-        "jar_file_uris": [],     # Additional JARs if any
-    },
-}
+    # Job configuration for cluster-based execution
+    job_details = {
+        "reference": {"project_id": "airy-advantage-462109-h1"},
+        "placement": {"cluster_name": "cluster-demo"},
+        "pyspark_job": {
+            "main_python_file_uri": "gs://weather-data-gcp/script/weather_data_processing.py",
+            "args": [],
+            "python_file_uris": [],  # Additional .py files if any
+            "jar_file_uris": [],     # Additional JARs if any
+        },
+    }
 
-# Airflow Task for Dataproc cluster-based job
-pyspark_task = DataprocSubmitJobOperator(
-    task_id="submit_spark_job_to_cluster",
-    job=job_details,
-    region="us-central1",
-    project_id="airy-advantage-462109-h1",
-    gcp_conn_id="google_cloud_default",
-)
+    # Airflow Task for Dataproc cluster-based job
+    pyspark_task = DataprocSubmitJobOperator(
+        task_id="submit_spark_job_to_cluster",
+        job=job_details,
+        region="us-central1",
+        project_id="airy-advantage-462109-h1",
+        gcp_conn_id="google_cloud_default",
+    )
 
 
-# Task Dependencies
-pyspark_task
+    # Task Dependencies
+    pyspark_task
