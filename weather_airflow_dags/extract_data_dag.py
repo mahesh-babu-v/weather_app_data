@@ -76,7 +76,7 @@ with DAG(
     # -------------------------------------------------------------------
     trigger_transform = TriggerDagRunOperator(
         task_id="trigger_data_transform_dag",
-        trigger_dag_id="transform_data_dag adjusted for standard cluster.py",
+        trigger_dag_id="transformed_weather_data_to_bq",
         wait_for_completion=False,
     )
 
